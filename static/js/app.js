@@ -59,44 +59,40 @@ d3.json("samples.json").then(function(data) {
 });
 }
 
-//Display the sample metadata, i.e., an individual's demographic information
+//Display the sample metadata (an individual's demographic information)
 function buildSubjectData(subject) {
   d3.json("samples.json").then(function(data) {
-    var subjectdata= data.metadata;
-    var resultlist= subjectdata.filter(sampleobj => sampleobj.id == subject);
+    var subjectdata= data.metadata; 
+    var resultlist= subjectdata.filter(sampleobj => sampleobj.id == subject); //match sample object ID with input subject key
     var result= resultlist[0]
+    //console.log(result); 
     var display_panel = d3.select("#sample-metadata");
     display_panel.html(""); //initialise and clear values
-    Object.entries(result).forEach(([key, value]) => {
-      display_panel.append("p").text(`${key}: ${value}`);
+    Object.entries(result).forEach(([key, value]) => {display_panel.append("p").text(`${key}: ${value}`);
     });
 
   });
 }
 
-
 function init() {
 var selector = d3.select("#selDataset"); //obtain the reference data from drop down
 
-// Use the list of sample names to populate the select options
+// Use the list of sample names to populate the selected option
 d3.json("samples.json").then(function (data){
-  var sampleNames = data.names;
-  sampleNames.forEach(function(sample) {
-    selector
-      .append("option")
-      .text(sample)
-      .property("value", sample);
+  var names = data.names;
+  names.forEach(function(sample) {
+    selector.append("option").text(sample).property("value", sample);
   });
 
-  // Use the first sample from the list to build the initial plots
-  const firstSample = sampleNames[0];
+  // setting the first sample from the list as a display default
+  const firstSample = names[0];
   buildCharts(firstSample);
   buildSubjectData(firstSample);
 });
 }
 
+// get a different values when a new sample is selected
 function optionChanged(newSample) {
-// Fetch new data each time a new sample is selected
 buildCharts(newSample);
 buildSubjectData(newSample);
 }
