@@ -77,7 +77,7 @@ function buildSubjectData(subject) {
 function init() {
 var selector = d3.select("#selDataset"); //obtain the reference data from drop down
 
-// Use the list of sample names to populate the selected option
+// Use the list of sample names to populate the selected option in the drop down
 d3.json("samples.json").then(function (data){
   var names = data.names;
   names.forEach(function(sample) {
