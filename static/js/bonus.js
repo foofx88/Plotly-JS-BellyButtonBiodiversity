@@ -1,3 +1,17 @@
+//Display the sample metadata (an individual's demographic information)
+function buildSubjectData(subject) {
+  d3.json("samples.json").then(function(data) {
+    var subjectdata= data.metadata; 
+    var resultlist= subjectdata.filter(sampleobj => sampleobj.id == subject); //match sample object ID with input subject key
+    var result= resultlist[0]
+    //console.log(result); 
+    var display_panel = d3.select("#sample-metadata");
+    display_panel.html(""); //initialise and clear values
+    Object.entries(result).forEach(([key, value]) => {display_panel.append("p").text(`${key}: ${value}`);
+    });
+  });
+}
+
 function buildCharts(sample) {
 
   // Use `d3.json` to fetch the sample data for the plots
@@ -59,30 +73,20 @@ function buildCharts(sample) {
   });
   }
 
+//get the gauge area ready
 var gaugeDiv = document.getElementById("gauge");
 
-//Display the sample metadata (an individual's demographic information)
-function buildSubjectData(subject) {
-  d3.json("samples.json").then(function(data) {
-    var subjectdata= data.metadata; 
-    var resultlist= subjectdata.filter(sampleobj => sampleobj.id == subject); //match sample object ID with input subject key
-    var result= resultlist[0]
-    //console.log(result); 
-    var display_panel = d3.select("#sample-metadata");
-    display_panel.html(""); //initialise and clear values
-    Object.entries(result).forEach(([key, value]) => {display_panel.append("p").text(`${key}: ${value}`);
-    });
-  });
-}
 
 function gaugeChart(data) {
+
+  console.log("gaugeChart", data);
 
   if(data.wfreq === null){
     data.wfreq = 0;
 
   }
-
-var degrees = 180 - (parseInt(data.wfreq) * (180/10));
+var degree = parseInt(data.wfreq) * (180/10);
+var degrees = 180 - degree;
 var radians = degrees * Math.PI / 180;
 var radius = 0.5;
 var x = radius * Math.cos(radians);
@@ -108,11 +112,11 @@ var traceA = [{
   textinfo: "text",
   textposition: "inside",
   marker: {
-    colors: ["rgb(248, 243, 236)", "rgb(244, 241, 229)", "rgb(233, 230, 202)", "rgb(229, 231, 179)", "rgb(213, 228, 157)",
-              "rgb(183, 204, 146)", "rgb(140, 191, 136)", "rgb(138, 187, 143)", "rgb(133, 180, 138)", "white"]
+    colors: ["rgb(133, 180, 138)", "rgb(138, 187, 143)", "rgb(140, 191, 136)", "rgb(183, 204, 146)", 
+    "rgb(213, 228, 157)", "rgb(229, 231, 179)", "rgb(233, 230, 202)", "rgb(244, 241, 229)", "rgb(248, 243, 236)", "white"]
   },
   label: ["8-9","7-8", "6-7", "5-6", "4-5", "3-4", "2-3", "1-2", "0-1", ""],
-  hoverinfo: "label",
+  hoverinfo: "text",
   type: "pie",
   showlegend: false,
   hole: 0.5,
@@ -133,7 +137,7 @@ var layout = {
 };
 
 
-Plotly.plot(gaugeDiv, traceA, layout, {responsive: true});
+Plotly.newPlot(gaugeDiv, traceA, layout, {responsive: true});
 
 }
 
@@ -146,7 +150,6 @@ function buildGaugeChart(sample) {
     var subjdata = data.metadata;
 
     var matchedsubj = subjdata.filter(sampleData => sampleData["id"] === parseInt(sample));
-    //console.log(matchedsubj);
 
     gaugeChart(matchedsubj[0]); //initialise the gauge chart with the default subject value
  });   
@@ -169,7 +172,7 @@ function init() {
     const firstSample = names[0];
     buildCharts(firstSample);
     buildSubjectData(firstSample);
-    buildGaugeChart(firstSample);
+    buildGaugeChart(firstSample)
   });
   }
   
@@ -177,7 +180,7 @@ function init() {
   function optionChanged(newSample) {
     buildCharts(newSample);
     buildSubjectData(newSample);
-    buildGaugeChart(newSample);
+    buildGaugeChart(newSample)
   }
   
   
