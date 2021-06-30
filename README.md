@@ -9,7 +9,7 @@ The following is a preview of the codes for the bubble chart:
 
 <img src="/snips/samplecode1.JPG" alt="main dashboard" width="634" height="543">
 
-Once all the functions are coded, buildCharts (Contains the Bar and Bubble Chart), buildSubjectData (Display Information for each Test Subject) and buildGaugeChart are completed, the initialisation for the dashboard combines them. The firstSample displays the default display on the dashboard. In this case we are showing the 1st Test Subject in the dataset provided. The optionChanged would grab the newly selected value and input into the 3 main functions.
+Once all the functions are coded, buildCharts (Contains the Bar and Bubble Chart), buildSubjectData (Display Information for each Test Subject) and buildGaugeChart are completed, the initialisation for the dashboard combines them. The firstSample displays the default display on the dashboard. In this case we are showing the 1st Test Subject in the dataset provided. The optionChanged would grab the newly selected value and input into the 3 main functions. <br>
 <img src="/snips/samplecode2.JPG" alt="main dashboard" width="748" height="510">
 
 Once the dataset is appended onto the drop down, users can select the Test Subject ID they want to view and the dashboard will dynamically updates according to the Test Subject ID selected. 
