@@ -94,7 +94,7 @@ var y = radius * Math.sin(radians);
 
 var mainPath = 'M -.0 -0.025 L .0 0.025 L',
      pathX = String(x),
-     space = ' ',
+     space = ' ',      
      pathY = String(y),
      pathEnd = ' Z';
 var path = mainPath.concat(pathX,space,pathY,pathEnd);
