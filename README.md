@@ -1,3 +1,6 @@
+<h3>Plotly (JS) Demo - Belly Button Biodiversity</h3>
+<hr>
+
 <img src="/snips/bacteria.jpg" alt="bacteria" width="150" height="150" align="right">
 
 Using the Belly Button dataset provided in samples.json, the data is presented to the HTML file via Javascript using D3.json() <br>
