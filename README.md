@@ -1,9 +1,9 @@
-<h3>Plotly (JS) Demo - Belly Button Biodiversity</h3>
+<h3>Plotly (JS) Visualization - Belly Button Biodiversity</h3>
 <hr>
 
 <img src="/snips/bacteria.jpg" alt="bacteria" width="150" height="150" align="right">
 
-Using the Belly Button dataset provided in samples.json, the data is presented to the HTML file via Javascript using D3.json() <br>
+Using the Belly Button dataset provided in <a href="/samples.json">samples.json</a>, the data is presented to the HTML file via Javascript using D3.json() <br>
 The dataset reveals that a small handful of microbial species (also called operational taxonomic units, or OTUs, in the study) were present in more than 70% of people, while the rest were relatively rare.
 
 <hr>
@@ -22,4 +22,6 @@ Once the dataset is appended onto the drop down, users can select the Test Subje
 
 The Dashboard display when another Test Subject ID was selected.
 <img src="/snips/dashboard2.png" alt="new data dashboard" width="748" height="560">
+
+See the site in action <a href="https://foofx88.github.io/Plotly-JS-BellyButtonBiodiversity/">here</a> or explore <a href="/static/js/bonus.js">JavaScript codes</a>
 
